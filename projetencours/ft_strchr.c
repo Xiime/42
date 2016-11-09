@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 10:33:29 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/07 15:50:19 by mtrudel          ###   ########.fr       */
+/*   Updated: 2016/11/09 14:34:22 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strchr(const char *s, int c)
 	{
 		i++;
 	}
-	if (s[i] == (char)c)
-		return ((char *)s);
+	if (s[i] == (char)c || (s[i] == '\0' && c == 0))
+		return ((char *)&s[i]);
 	return (NULL);
 }

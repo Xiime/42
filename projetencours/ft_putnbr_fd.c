@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:51:33 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/09 14:53:50 by mtrudel          ###   ########.fr       */
+/*   Created: 2016/11/09 19:59:43 by mtrudel           #+#    #+#             */
+/*   Updated: 2016/11/09 20:09:33 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	size_t	j;
-	size_t	tmp;
+	long int	n1;
 
-	i = 0;
-	j = 0;
-	tmp = ft_strlen(little);
-	if (tmp == 0)
-		return ((char *)big);
-	while (big[i] != '\0')
+	n1 = (long int)n;
+	if (n1 < 0)
 	{
-		if (little[j] == big[i])
-		{
-			while (little[j] == big[i + j] && little[j] != '\0')
-				j++;
-			if (j == tmp)
-				return ((char *)big + i);
-		}
-		j = 0;
-		i++;
+		n1 = n1 * (-1);
+		ft_putchar_fd('-', fd);
 	}
-	return (NULL);
+	if (n1 >= 10)
+		ft_putnbr_fd(n1 / 10, fd);
+	ft_putchar_fd((n1 % 10) + '0', fd);
 }

@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:51:33 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/09 14:53:50 by mtrudel          ###   ########.fr       */
+/*   Created: 2016/11/08 11:30:12 by mtrudel           #+#    #+#             */
+/*   Updated: 2016/11/08 18:23:22 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t	i;
-	size_t	j;
-	size_t	tmp;
+	size_t			i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
 
 	i = 0;
-	j = 0;
-	tmp = ft_strlen(little);
-	if (tmp == 0)
-		return ((char *)big);
-	while (big[i] != '\0')
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	while (i < n)
 	{
-		if (little[j] == big[i])
-		{
-			while (little[j] == big[i + j] && little[j] != '\0')
-				j++;
-			if (j == tmp)
-				return ((char *)big + i);
-		}
-		j = 0;
+		dst2[i] = src2[i];
+		if (dst2[i] == (unsigned char)c)
+			return (&dst2[i] + 1);
 		i++;
 	}
 	return (NULL);

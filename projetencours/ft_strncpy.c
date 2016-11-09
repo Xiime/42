@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 09:42:05 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/07 13:29:24 by mtrudel          ###   ########.fr       */
+/*   Updated: 2016/11/09 18:37:37 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	unsigned long	cpt;
+	size_t	cpt;
 
 	cpt = 0;
 	while (src[cpt] != '\0' && cpt < n)

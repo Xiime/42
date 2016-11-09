@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:51:33 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/09 14:53:50 by mtrudel          ###   ########.fr       */
+/*   Created: 2016/11/09 14:55:31 by mtrudel           #+#    #+#             */
+/*   Updated: 2016/11/09 19:16:20 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -23,12 +23,14 @@ char	*ft_strstr(const char *big, const char *little)
 	tmp = ft_strlen(little);
 	if (tmp == 0)
 		return ((char *)big);
-	while (big[i] != '\0')
+	while (big[i] != '\0' && i < len)
 	{
 		if (little[j] == big[i])
 		{
 			while (little[j] == big[i + j] && little[j] != '\0')
-				j++;
+				++j;
+			if ((j + i) > len)
+				return (NULL);
 			if (j == tmp)
 				return ((char *)big + i);
 		}
