@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 11:44:08 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/07 11:07:22 by mtrudel          ###   ########.fr       */
+/*   Created: 2016/11/08 16:40:37 by mtrudel           #+#    #+#             */
+/*   Updated: 2016/11/10 09:40:36 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
+	size_t			i;
 
-	i = 0;
-	while (s[i])
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	i = len;
+	if (len == 0 || dst == src)
+		return (dst);
+	if (dst > src)
 	{
-		ft_putchar(s[i]);
-		i++;
+		while (i > 0)
+		{
+			i--;
+			dst2[i] = src2[i];
+		}
 	}
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
 }

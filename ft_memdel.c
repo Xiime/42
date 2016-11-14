@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 16:40:37 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/09 13:13:44 by mtrudel          ###   ########.fr       */
+/*   Created: 2016/11/10 07:40:23 by mtrudel           #+#    #+#             */
+/*   Updated: 2016/11/10 09:19:35 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_memdel(void **ap)
 {
-	unsigned char	*dst2;
-	unsigned char	*src2;
-	size_t			i;
-
-	dst2 = (unsigned char *)dst;
-	src2 = (unsigned char *)src;
-	i = len;
-	if (len == 0)
-		return (dst);
-	if (dst > src)
+	if (ap)
 	{
-		while (i > 0)
-		{
-			i--;
-			dst2[i] = src2[i];
-		}
+		free(*ap);
+		*ap = NULL;
 	}
-	else
-		ft_memcpy(dst, src, len);
-	return (dst);
 }
