@@ -28,16 +28,16 @@ int		ft_go_to_lbsn(char *str)
 
 int		get_next_line(const int fd, char **line)
 {
-	char			buf[BUFF_SIZE + 1];
-	int				ret;
-	static char		*resu;
-	size_t			i;
-	char			*tmp;
+	char		buf[BUFF_SIZE + 1];
+	int		ret;
+	static char	*resu;
+	size_t		i;
+	char		*tmp;
 
 	if (!resu)
 		resu = ft_strdup("");
 	i = 0;
-	if (ft_strchr(resu, '\n') != NULL && ft_strlen(resu) > 1)
+	while (ft_strchr(resu, '\n') != NULL)
 	{
 		*line = ft_strnew(ft_go_to_lbsn(resu));
 		*line = ft_strncpy(*line, resu, ft_go_to_lbsn(resu));
@@ -66,12 +66,12 @@ int		get_next_line(const int fd, char **line)
 				return (1);
 		}
 	}
-	if (ret == 0 && strchr(resu, '\n') == NULL && resu != NULL)
+	if (resu != NULL && ret == 0 && strchr(resu, '\n') == NULL && *line == NULL)
 	{
 		*line = ft_strnew(ft_strlen(resu));
 		*line = ft_strncpy(*line, resu, ft_strlen(resu));
-		ft_strdel(&resu);
 		return (1);
 	}
+	ft_strdel(&resu);
 	return (0);
 }

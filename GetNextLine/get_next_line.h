@@ -12,7 +12,8 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFFER 5
+# define BUFF_SIZE 10000
+#include <stdio.h>
 #include <unistd.h>
 #include "./libft/libft.h"
 #include <fcntl.h>

@@ -20,7 +20,10 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		return (-1);
 	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, &line);
-	ft_putendl(line);
+	while (get_next_line(fd, &line) != 0)
+	{
+		ft_putendl(line);
+		free(line);
+	}
 	return (0);
 }
