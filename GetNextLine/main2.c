@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 12:37:47 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/01/26 16:16:57 by mtrudel          ###   ########.fr       */
+/*   Created: 2017/01/30 17:18:27 by mtrudel           #+#    #+#             */
+/*   Updated: 2017/01/30 17:19:11 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int        main(int argc, char **argv)
 {
-	char	*dest;
-	size_t	i;
-	size_t	j;
+	int i;
+	int fd;
+	int ret;
+	char *line;
 
 	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	dest = (char*)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (s1[i])
+	line = NULL;
+	if (argc == 1)
+		while (get_next_line(0, &line))
+		{
+			ft_putendl(line);
+			free(line);
+		}
+	while (i + 1 < argc)
 	{
-		dest[i] = s1[i];
+		fd = open(argv[i + 1], O_RDONLY);
+		while ((ret = get_next_line(fd, &line)) > 0)
+		{
+			ft_putendl(line);
+			free(line);
+		}
+		if (ret == -1)
+			ft_putendl("Bad opening ok");
 		i++;
 	}
-	j = i;
-	i = 0;
-	while (s2[i])
-	{
-		dest[j] = s2[i];
-		i++;
-		j++;
-	}
-	dest[j] = '\0';
-	return (dest);
+	return (0);
 }

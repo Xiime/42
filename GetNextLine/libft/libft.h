@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 11:15:05 by mtrudel           #+#    #+#             */
-/*   Updated: 2016/11/15 17:37:34 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/01/30 16:59:11 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_go_to_fbsn(char *str);
 int					ft_atoi(const char *nptr);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
@@ -64,6 +65,7 @@ void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void(*f)(unsigned int, char *));
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strfreejoin(char *s1, char *s2);
 void				ft_putchar_uni(int	c);
 void				ft_putchar_fd_uni(int c, int fd);
 char				*ft_strtrim(char const *s);

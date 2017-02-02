@@ -6,72 +6,61 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:24:31 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/01/24 14:21:40 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/02/02 18:29:49 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_go_to_lbsn(char *str)
+static void		inter_gnl(char **resu, char **tmp, char **line)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	*line = ft_strnew(ft_go_to_fbsn(*resu));
+	*line = ft_strncpy(*line, *resu, ft_go_to_fbsn(*resu));
+	if (((int)ft_strlen(*resu) - 1) >= ft_go_to_fbsn(*resu))
 	{
-		if (str[i] == '\n')
-			return (i);
-		i++;
+		*tmp = ft_strdup(ft_strchr(*resu, '\n') + 1);
+		*resu = ft_strcpy(*resu, *tmp);
+		ft_strdel(tmp);
 	}
-	return (0);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	char		buf[BUFF_SIZE + 1];
-	int		ret;
-	static char	*resu;
-	size_t		i;
-	char		*tmp;
+	char			buf[BUFF_SIZE + 1];
+	int				ret;
+	static char		*resu;
+	char			*tmp;
 
+	if (fd < 1 || BUFF_SIZE < 1)
+		return (-1);
 	if (!resu)
-		resu = ft_strdup("");
-	i = 0;
-	while (ft_strchr(resu, '\n') != NULL)
+		resu = ft_strnew(1);
+	if (ft_strchr(resu, '\n') != NULL)
 	{
-		*line = ft_strnew(ft_go_to_lbsn(resu));
-		*line = ft_strncpy(*line, resu, ft_go_to_lbsn(resu));
-		if (((int)ft_strlen(resu) - 1) >= ft_go_to_lbsn(resu))
-		{
-			tmp = ft_strdup(ft_strchr(resu, '\n') + 1);
-			resu = ft_strdup(tmp);
-			ft_strdel(&tmp);
-		}
+		//printf("1chr\n");
+		inter_gnl(&resu, &tmp, line);
 		return (1);
 	}
-	while ((ret = read(fd, buf, BUFF_SIZE)))
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		resu = ft_strjoin(resu, buf);
+		resu = ft_strfreejoin(resu, buf);
 		if (ft_strchr(buf, '\n') != NULL)
 		{
-				*line = ft_strnew(ft_go_to_lbsn(resu));
-				*line = ft_strncpy(*line, resu, ft_go_to_lbsn(resu));
-				if (((int)ft_strlen(resu) - 1) >= ft_go_to_lbsn(resu))
-				{
-					tmp = ft_strdup(ft_strchr(resu, '\n') + 1);
-					resu = ft_strdup(tmp);
-					ft_strdel(&tmp);
-				}
-				return (1);
+			inter_gnl(&resu, &tmp, line);
+			return (1);
 		}
 	}
-	if (resu != NULL && ret == 0 && strchr(resu, '\n') == NULL && *line == NULL)
+	//printf("%s || %d || %s", resu, ret, *line);
+	if (resu != NULL && ft_strchr(resu, '\n') == NULL && *line == NULL && ret == 0)
 	{
+		//ft_putstr("ici\n");
 		*line = ft_strnew(ft_strlen(resu));
-		*line = ft_strncpy(*line, resu, ft_strlen(resu));
+		*line = ft_strcpy(*line, resu);
+		ft_strdel(&resu);
 		return (1);
 	}
-	ft_strdel(&resu);
+	if (resu)
+		ft_strdel(&resu);
 	return (0);
 }

@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_go_to_lbsn.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 12:37:47 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/01/26 16:16:57 by mtrudel          ###   ########.fr       */
+/*   Created: 2017/01/30 15:45:26 by mtrudel           #+#    #+#             */
+/*   Updated: 2017/01/30 16:58:24 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int		ft_go_to_fbsn(char *str)
 {
-	char	*dest;
-	size_t	i;
-	size_t	j;
+	int		i;
 
 	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	dest = (char*)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (s1[i])
+	if (!str)
+		return (-1);
+	while (str[i] != '\0')
 	{
-		dest[i] = s1[i];
+		if (str[i] == '\n')
+			return (i);
 		i++;
 	}
-	j = i;
-	i = 0;
-	while (s2[i])
-	{
-		dest[j] = s2[i];
-		i++;
-		j++;
-	}
-	dest[j] = '\0';
-	return (dest);
+	return (0);
 }
