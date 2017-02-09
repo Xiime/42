@@ -6,13 +6,27 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:24:31 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/02/08 21:02:31 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/02/09 13:38:30 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void		inter_gnl(char **resu, char **tmp, char **line)
+static int		ft_go_to_fchar(char *str, char c)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+static int		inter_gnl(char **resu, char **tmp, char **line)
 {
 	*line = ft_strnew(ft_go_to_fchar(*resu, '\n'));
 	*line = ft_strncpy(*line, *resu, ft_go_to_fchar(*resu, '\n'));
@@ -22,13 +36,15 @@ static void		inter_gnl(char **resu, char **tmp, char **line)
 		*resu = ft_strcpy(*resu, *tmp);
 		ft_strdel(tmp);
 	}
+	return (1);
 }
 
-static int		ft_last_iter(char **resu, char **tmp, char **line)
+static int		last_gnl(char **resu, char **line)
 {
-	*line = ft_strnew(ft_go_to_fchar(*resu, '\0'));
-	*line = ft_strncpy(*line, *resu, ft_go_to_fchar(*resu, '\0'));
-	if (((int)ft_strlen(*resu))
+	*line = ft_strnew(ft_strlen(*resu));
+	*line = ft_strcpy(*line, *resu);
+	*resu = ft_strcpy(*resu, "");
+	return (1);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -38,30 +54,20 @@ int				get_next_line(const int fd, char **line)
 	static char		*resu;
 	char			*tmp;
 
-	if (fd < 0 || BUFF_SIZE < 1 || (!resu && !(resu = ft_strnew(1))))
-		return (-1);	
+	if (fd < 0 || BUFF_SIZE < 1 || (!resu && !(resu = ft_strnew(1)))\
+			|| (ret = read(fd, buf, 0)) < 0)
+		return (-1);
 	if (ft_strchr(resu, '\n') != NULL)
-	{
-		inter_gnl(&resu, &tmp, line);
-		return (1);
-	}
+		return (inter_gnl(&resu, &tmp, line));
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
 		resu = ft_strfreejoin(resu, buf);
 		if (ft_strchr(buf, '\n') != NULL)
-		{
-			inter_gnl(&resu, &tmp, line);
-			return (2);
-		}
+			return (inter_gnl(&resu, &tmp, line));
 	}
-	if (resu != NULL && ft_strchr(resu, '\n') == NULL && ret == 0)
-	{
-		*line = ft_strnew(ft_strlen(resu));
-		*line = ft_strcpy(*line, resu);
-		resu = NULL;
-		return (3);
-	}
+	if (ft_strlen(resu) > 1)
+		return (last_gnl(&resu, line));
 	if (resu)
 		ft_strdel(&resu);
 	return (0);
