@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 17:18:27 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/01/30 17:19:11 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/02/08 17:54:03 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int        main(int argc, char **argv)
 		while (get_next_line(0, &line))
 		{
 			ft_putendl(line);
+			ft_putnbr(get_next_line(0, &line));
+			ft_putchar('\n');
 			free(line);
 		}
 	while (i + 1 < argc)
@@ -33,6 +35,8 @@ int        main(int argc, char **argv)
 		while ((ret = get_next_line(fd, &line)) > 0)
 		{
 			ft_putendl(line);
+			//ft_putnbr(get_next_line(fd, &line));
+			//ft_putchar('\n');
 			free(line);
 		}
 		if (ret == -1)

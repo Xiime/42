@@ -6,22 +6,22 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 15:45:26 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/01/30 16:58:24 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/02/08 20:24:22 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_go_to_fbsn(char *str)
+int		ft_go_to_fchar(char *str, char c)
 {
 	int		i;
 
 	i = 0;
 	if (!str)
 		return (-1);
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		if (str[i] == '\n')
+		if (str[i] == c)
 			return (i);
 		i++;
 	}

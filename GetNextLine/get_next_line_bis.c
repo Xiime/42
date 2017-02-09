@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:24:31 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/02/08 21:02:31 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/02/09 08:22:50 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int				get_next_line(const int fd, char **line)
 	if (ft_strchr(resu, '\n') != NULL)
 	{
 		inter_gnl(&resu, &tmp, line);
-		return (1);
-	}
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
