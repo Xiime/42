@@ -1,0 +1,30 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/13 09:15:16 by mtrudel           #+#    #+#              #
+#    Updated: 2017/02/13 14:00:42 by mtrudel          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = fdf
+HEADER = fdf.h
+MLX = -lmlx -framework OpenGL -framework AppKit
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+OBJECTS = fdf.o
+SRCS = fdf.c
+
+$(NAME): $(OBJECTS)
+	$(CC) $(CFLAGS) -c -I $(SRCS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) $(MLX)
+clean:
+	rm -rf $(OBJECTS)
+fclean: clean
+	rm -rf $(NAME)
+re: fclean all
+all: $(NAME)
+.PHONY: clean fclean re all
