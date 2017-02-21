@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# define BUFF_SIZE 32
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
@@ -73,6 +74,7 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+int				get_next_line(int fd, char **line);
 typedef struct		s_list
 {
 	void			*content;

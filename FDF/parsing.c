@@ -12,13 +12,22 @@
 
 #include "fdf.h"
 
+int		ft_checkchar(char *line)
+{
+	//il faut integrer gnl dans la libft et il va nous renvoyer line correctement. a partir de line ref : cahier de note
+}
+
 int		ft_parsing(char *str)
 {
 	char	filed[5];
-	int		fd;
+	int	fd;
 
 	filed = ".fdf\0";
 	if (ft_strcmp(ft_strchr(str, '.'), filed) != 0)
 		return (ft_usage(2));
-	if ()
+	if (!(fd = open(str, O_RDONLY)))
+		return (ft_usage(4));
+	else if (fd > 0)
+		close(fd);
+	
 }

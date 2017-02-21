@@ -18,7 +18,15 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+typedef struct	s_coordonnees
+{
+	int	x;//abscisses
+	int	y;//ordonnées
+	int	z;//hauteur
+}		t_coordonnees;
+
 int		ft_parsing(char *str);
 int		ft_usage(int code_err);
+int		ft_fill_struct()
 
 #endif
