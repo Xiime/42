@@ -6,7 +6,7 @@
 #    By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/13 09:15:16 by mtrudel           #+#    #+#              #
-#    Updated: 2017/02/13 14:00:42 by mtrudel          ###   ########.fr        #
+#    Updated: 2017/03/09 11:10:03 by mtrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ HEADER = fdf.h
 MLX = -lmlx -framework OpenGL -framework AppKit
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-OBJECTS = fdf.o
-SRCS = fdf.c
+OBJECTS = fdf.o ft_usage.o parsing.o
+SRCS = fdf.c ft_usage.c parsing.c
 
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -c -I $(SRCS)

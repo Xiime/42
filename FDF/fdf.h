@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:53:46 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/02/17 15:28:59 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/03/09 11:04:54 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ typedef struct	s_coordonnees
 
 int		ft_parsing(char *str);
 int		ft_usage(int code_err);
-int		ft_fill_struct()
 
 #endif

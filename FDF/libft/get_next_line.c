@@ -6,11 +6,11 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:24:31 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/02/09 13:38:30 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/03/08 01:04:18 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static int		ft_go_to_fchar(char *str, char c)
 {
