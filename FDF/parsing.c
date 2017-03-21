@@ -6,7 +6,7 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 14:58:48 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/03/09 11:31:32 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/03/20 11:49:30 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ static int		ft_checkchar(int fd)
 
 int			ft_parsing(char *str)
 {
-	char	filed;
+	char	*filed;
 	int	fd;
 
-	filed[5] = ".fdf\0";
+	filed = (char *)malloc(sizeof(char) * 5);
+	filed = ".fdf\0";
 	if (ft_strcmp(ft_strchr(str, '.'), filed) != 0)
 		return (ft_usage(2));
 	if (!(fd = open(str, O_RDONLY)))
