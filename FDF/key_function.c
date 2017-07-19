@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_struct.c                                      :+:      :+:    :+:   */
+/*   key_function.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/17 11:17:53 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/06/19 22:23:27 by mtrudel          ###   ########.fr       */
+/*   Created: 2017/05/04 10:18:20 by mtrudel           #+#    #+#             */
+/*   Updated: 2017/06/09 16:07:51 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_struct(struct *s_coordonnees coo)
+int		escape_key(int key_code)
 {
-	//prendre comme exemple ce que jái fait pour le parsing et ensuite enregister le x et le y de chaque chiffre et prendre en z le chiffre en question 
+	if (key_code == 53)
+		exit (1);
+	return (0);
 }

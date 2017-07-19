@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_struct.c                                      :+:      :+:    :+:   */
+/*   print_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/17 11:17:53 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/06/19 22:23:27 by mtrudel          ###   ########.fr       */
+/*   Created: 2017/06/19 11:32:06 by mtrudel           #+#    #+#             */
+/*   Updated: 2017/06/19 17:22:22 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_struct(struct *s_coordonnees coo)
+void	print_image(struct s_window* window, struct s_image* image)
 {
-	//prendre comme exemple ce que jái fait pour le parsing et ensuite enregister le x et le y de chaque chiffre et prendre en z le chiffre en question 
+	mlx_put_image_to_window(window->mlx, window->win, image->img, 0, 0);
+	mlx_key_hook(window->win, escape_key, NULL);
+	mlx_loop(window->mlx);
 }

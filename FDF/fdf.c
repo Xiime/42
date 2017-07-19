@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maintest.c                                         :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/13 08:53:25 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/03/20 11:52:42 by mtrudel          ###   ########.fr       */
+/*   Created: 2017/06/16 13:48:27 by mtrudel           #+#    #+#             */
+/*   Updated: 2017/06/20 13:53:04 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,32 @@
 #include <stdio.h>
 #include "fdf.h"
 
-int		my_key_funct(int keycode)
-{
-	printf("key event %d\n", keycode);
-	return (0);
-}
-
 int		main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*win;
-	int		x;
-	int		y;
+	struct	s_window window;
+	struct	s_image image;
+	struct	s_coordonnees coo;
 
 	if (argc != 2)
 		return (ft_usage(1));
-	if (!ft_parsing(argv[1])) // ft_parsing(argv[1]) >> argv[1] == le nom du fichier a ouvrir, le parsing va faire tous les tests pour verifier si le fichier existe et qu'il corrspond a ce qu'on veut
+	if (!ft_parsing(argv[1]))
 		return (-1);
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 800, 800, "mlx 42");
-	x = 100;
-	y = 100;
-	while (x < 700)
+	window.mlx = mlx_init();
+	window.win = mlx_new_window(window.mlx, 800, 800, "mlx 42");
+	image.img = mlx_new_image(window.mlx, 800, 800);
+	image.data = (int *)mlx_get_data_addr(image.img, &image.bpp, &image.sl, &image.ed);
+	coo.x = 100;
+	coo.y = 100;
+	while (coo.y < 400)
 	{
-		mlx_pixel_put(mlx, win, x, y, 0x00FF00FF);
-		x++;
+		while (coo.x < 400)
+		{
+			image.data [(coo.y * 800) + coo.x] = (int)0x00F3006E;
+			coo.x++;
+		}
+		coo.x = 100;
+		coo.y++;
 	}
-	mlx_key_hook(win, my_key_funct, NULL);
-	mlx_loop(mlx);
+	print_image(&window, &image);
 	return (0);
 }

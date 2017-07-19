@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_struct.c                                      :+:      :+:    :+:   */
+/*   ray_tracer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/17 11:17:53 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/06/19 22:23:27 by mtrudel          ###   ########.fr       */
+/*   Created: 2017/05/04 10:42:34 by mtrudel           #+#    #+#             */
+/*   Updated: 2017/07/19 15:56:19 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf.c"
 
-void	fill_struct(struct *s_coordonnees coo)
+void	ray_tracer_test()
 {
-	//prendre comme exemple ce que jái fait pour le parsing et ensuite enregister le x et le y de chaque chiffre et prendre en z le chiffre en question 
+	void	*mlx;
+	void	*win;
 }

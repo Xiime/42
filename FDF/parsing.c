@@ -6,13 +6,13 @@
 /*   By: mtrudel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 14:58:48 by mtrudel           #+#    #+#             */
-/*   Updated: 2017/03/20 11:49:30 by mtrudel          ###   ########.fr       */
+/*   Updated: 2017/05/09 14:50:37 by mtrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		ft_checkchar(int fd)
+static int	ft_checkchar(int fd)
 {
 	char	*line;
 	int		i;
@@ -26,12 +26,19 @@ static int		ft_checkchar(int fd)
 				return (-1);
 			i++;
 		}
-		if (line)
-			free(line);
 	}
 	if (line)
 		free(line);
 	return (1);
+}
+
+static int	ft_if_void(int fd)
+{
+	char	*line;
+
+	if ((get_next_line(fd, &line)) == -1)
+		return (-1);
+	return (0);
 }
 
 int			ft_parsing(char *str)
@@ -40,12 +47,19 @@ int			ft_parsing(char *str)
 	int	fd;
 
 	filed = (char *)malloc(sizeof(char) * 5);
-	filed = ".fdf\0";
-	if (ft_strcmp(ft_strchr(str, '.'), filed) != 0)
+	filed = ".fdf";
+	if (ft_strchr(str, '.') == NULL)
 		return (ft_usage(2));
-	if (!(fd = open(str, O_RDONLY)))
+	if (ft_strcmp(ft_strchr(str, '.'), filed) != 0)
+	{
+		free(filed);
+		return (ft_usage(2));
+	}
+	if ((fd = open(str, O_RDONLY)) == -1)
 		return (ft_usage(4));
-	if (!(ft_checkchar(fd)))
+	if ((ft_if_void(fd)) == -1)
+		return (ft_usage(3));
+	if ((ft_checkchar(fd)) == -1)
 		return (ft_usage(5));
 	if (fd > 0)
 		close(fd);
